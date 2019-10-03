@@ -1,0 +1,48 @@
+ (define (palindrome? x)
+    ; get the size of the list
+    (define size (length x))
+    
+    ; divide the size by 2 to start the loop from middle
+    (define halfSize (/ size 2))
+    (set! size (- size 1))
+    (set! halfSize (- halfSize 1))
+
+    ; assume the list is palindrome
+    (define result "Palindrome")
+
+    ;initialize variables first and last
+    (define first 0)
+    (define last 0)
+
+    ;loop from the mid index towards 0 index
+    (let loop ((i halfSize))
+      
+      ; Set first
+      (set! first (list-ref x i))
+      
+      ; Set last
+      (set! last (list-ref x (- size i)))
+
+      ; check if first and last are same
+      (define areSame (eq? first last))
+      
+      ; if not same the list is not palindrome
+      (if (not areSame)
+        (set! result "Not palindrome")
+      )
+
+      ; decrment the i and call the function again till value is 0
+      (if (> i 0 )      
+        (loop (- i 1))
+      )  
+    )
+
+    ; display the result
+    (display result)
+    (display "\n")
+)
+
+(define x (list 5 6 1 3 7 7 3 1 6 5 ))
+(palindrome? x)
+(define y (list 5 6 7 1 6 5 ))
+(palindrome? y)
