@@ -1,0 +1,18 @@
+; recursively merges the two sorted list (in ascending order)
+(define (mergeSortedList firstList secondList)
+;if firstlist is empty return secondList
+	(if (null? firstList) secondList
+  ;if secondList is empty return secondList
+	(if (null? secondList) firstList
+
+  ;if first item of first list is smaller than first item of secondList
+  ;   append first item of first list with mergeSortedList(remainingFirstListItems secondlist) 
+  ; else 
+  ;   append first item of second list with mergeSortedList(firstList remainingSecondtListItems)
+  ; 
+	(if (< (car firstList) (car secondList))
+		(cons (car firstList) (mergeSortedList (cdr firstList) secondList))
+		(cons (car secondList) (mergeSortedList (cdr secondList) firstList))))))
+
+;example
+(mergeSortedList '(1 3 5 7 8 9 10) '(5 10))
